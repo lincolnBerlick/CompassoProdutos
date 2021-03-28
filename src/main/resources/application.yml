@@ -1,0 +1,20 @@
+server:
+  port: 9999
+
+spring:
+  jpa:
+    database: POSTGRESQL
+    database-plataform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5433/PRODUTOS-COMPASSO
+    username: postgres
+    password: postgres
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    out-of-order: true

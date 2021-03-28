@@ -1,0 +1,16 @@
+spring:
+  jpa:
+    database: POSTGRESQL
+    database-plataform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5433/PRODUTOS-COMPASSO-TEST
+    username: postgres
+    password: postgres
+
+  flyway:
+    enabled: false
+    baseline-on-migrate: false
