@@ -27,8 +27,8 @@ public class ProdutoService {
         return ProductResponseDto.of(produtoRepository.save(produtoParaSalvar));
     }
 
-    public ProductResponseDto update(Integer produtoId, ProductUpdateRequest produto) {
-       var produtoParaAtualizar = findByIdOrElseThrow(produtoId);
+    public ProductResponseDto update(Integer productId, ProductUpdateRequest produto) {
+       var produtoParaAtualizar = findByIdOrElseThrow(productId);
         BeanUtils.copyProperties(produto, produtoParaAtualizar,"id");
         return ProductResponseDto.of(produtoRepository.save(produtoParaAtualizar));
     }
@@ -40,7 +40,6 @@ public class ProdutoService {
     private Product findByIdOrElseThrow(Integer produtoId) {
         return produtoRepository.findById(produtoId)
                 .orElseThrow(() -> new ValidacaoException("Não foi possível encontrar o produto"));
-
     }
 
     public List<ProductResponseDto> findAll() {
@@ -50,12 +49,16 @@ public class ProdutoService {
                 .collect(Collectors.toList());
     }
 
-    public Page<Product> findAllFiltros(Pageable pageable, ProductFiltros productFiltros) {
-        return produtoRepository.findAll(productFiltros.toPredicate().build(), pageable);
+    public List<Product> findAllFiltros(ProductFiltros productFiltros) {
+        return produtoRepository.findAll(productFiltros.toPredicate().build());
     }
 
     public void deleteById(Integer productId) {
         findByIdOrElseThrow(productId);
         produtoRepository.deleteById(productId);
+    }
+
+    public Page<Product> findAllFiltrosPage(Pageable pageable, ProductFiltros productFiltros) {
+        return produtoRepository.findAll(productFiltros.toPredicate().build(), pageable);
     }
 }

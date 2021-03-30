@@ -1,15 +1,18 @@
 spring:
   jpa:
-    database: POSTGRESQL
-    database-plataform: org.hibernate.dialect.PostgreSQLDialect
+    database-platform:
+    database: H2
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: create-drop
+      dialect: org.hibernate.dialect.H2Dialect
+
   datasource:
-    driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5433/PRODUTOS-COMPASSO-TEST
-    username: postgres
-    password: postgres
+    url:
+    jdbcUrl: jdbc:h2:mem:pokermanager;DB_CLOSE_DELAY=-1
+    username: sa
+    password: sa
+    driverClassName: org.h2.Driver
 
   flyway:
     enabled: false

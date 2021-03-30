@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+
 import javax.validation.Valid;
 import java.util.List;
 
@@ -29,8 +30,8 @@ public class ProdutoController {
     }
 
     @PutMapping("{productId}")
-    public ProductResponseDto update(@PathVariable Integer produtoId, @Valid ProductUpdateRequest produto) {
-        return produtoService.update(produtoId, produto);
+    public ProductResponseDto update(@PathVariable Integer productId, @RequestBody @Valid ProductUpdateRequest produto) {
+        return produtoService.update(productId, produto);
 
     }
 
@@ -45,11 +46,16 @@ public class ProdutoController {
     }
 
     @GetMapping("search")
-    public Page<Product> findAllFiltros(ProductFiltros productFiltros, Pageable pageable) {
-        return produtoService.findAllFiltros(pageable, productFiltros);
+    public List<Product> findAllFiltros(ProductFiltros productFiltros) {
+        return produtoService.findAllFiltros(productFiltros);
     }
 
-    @DeleteMapping({"productId"})
+    @GetMapping("search/page")
+    public Page<Product> findAllFiltrosPage(ProductFiltros productFiltros, Pageable pageable) {
+        return produtoService.findAllFiltrosPage(pageable, productFiltros);
+    }
+
+    @DeleteMapping("{productId}")
     public void deleteById(@PathVariable Integer productId) {
         produtoService.deleteById(productId);
     }

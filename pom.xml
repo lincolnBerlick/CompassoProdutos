@@ -70,6 +70,24 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.4.21.Final</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-envers -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-envers</artifactId>
+			<version>5.4.21.Final</version>
+		</dependency>
+		<!-- Banco em memória para testes -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
@@ -85,6 +103,17 @@
 
 	<build>
 		<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-checkstyle-plugin</artifactId>
+					<version>3.1.2</version>
+					<configuration>
+						<configLocation>src/main/resources/checkstyle/google_checks.xml</configLocation>
+						<suppressionsLocation>src/main/resources/checkstyle/suppressions.xml
+						</suppressionsLocation>
+						<suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
+					</configuration>
+				</plugin>
 			<plugin>
 				<groupId>com.mysema.maven</groupId>
 				<artifactId>apt-maven-plugin</artifactId>

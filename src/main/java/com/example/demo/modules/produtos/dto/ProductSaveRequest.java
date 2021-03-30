@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
@@ -22,6 +23,7 @@ public class ProductSaveRequest {
     @NotEmpty
     private String description;
     @NotNull
+    @Min(0)
     private BigDecimal price;
 
     public static Product of(ProductSaveRequest productSaveRequest) {
