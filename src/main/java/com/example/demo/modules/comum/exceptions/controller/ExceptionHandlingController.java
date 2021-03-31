@@ -38,8 +38,8 @@ public class ExceptionHandlingController {
         var errorMsg = Optional.ofNullable(ex.getBindingResult().getAllErrors().get(0).getDefaultMessage())
                 .orElse(ex.getMessage());
 
-        return List.of(new ErrorMessage(BAD_REQUEST_ERROR,
-                String.format("{%s} %s", ex.getFieldError().getField(), errorMsg)));
+        return  null; //List.of(new ErrorMessage(BAD_REQUEST_ERROR,
+               // String.format("{%s} %s", ex.getFieldError().getField(), errorMsg)));
     }
 
 
